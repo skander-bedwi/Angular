@@ -1,0 +1,57 @@
+<h2>Add new Users</h2>
+<!-- <button (click)="add()">Add</button> -->
+<form #addForm="ngForm" (ngSubmit)="add(addForm)">
+    <div class="form-group">
+      <label for="fn">First Name </label>
+      <input type="text" class="form-control" id="fn" name="fn" ngModel required minlength="3" #fn="ngModel" pattern="[a-z-A-Z]*">
+      <small class="text text-danger" *ngIf="fn.errors?.['required'] ">Name is required</small>
+      <small class="text text-danger" *ngIf="fn.errors?.['minlength'] ">First Name contiennent au minimum 3
+        caractères, </small>
+      <small class="text text-danger" *ngIf="fn.errors?.['pattern'] ">doit contiennent que des lettres.  </small>
+    </div>
+    <div class="form-group">
+        <label for="fn">Last Name </label>
+        <input type="text" class="form-control" id="ln" name="fln" ngModel required minlength="3" #ln="ngModel" pattern="[a-z-A-Z]*">
+        <small class="text text-danger" *ngIf="ln.errors?.['required'] ">Name is required</small>
+        <small class="text text-danger" *ngIf="ln.errors?.['minlength'] ">Last Name contiennent au minimum 3
+            caractères, </small>
+        <small class="text text-danger" *ngIf="ln.errors?.['pattern'] ">contiennent que des lettres. </small>
+      </div>
+      <div class="form-group">
+        <label for="date">Date </label>
+        <input type="date" class="form-control" id="date" name="date" ngModel required  #date="ngModel" >
+        <small class="text text-danger" *ngIf="date.errors?.['required'] ">Date is required</small>
+      
+      
+      </div>
+      <div class="form-group">
+        <label for="email">Email </label>
+        <input type="email" class="form-control" id="email" name="email" ngModel required  #email="ngModel" pattern="^[a-zA-Z0-9._-]+@gmail.com">
+        <small class="text text-danger" *ngIf="email.errors?.['required'] ">Email is required</small>
+      
+        <small class="text text-danger" *ngIf="email.errors?.['pattern'] "> L’adresse Email doit se terminer par @gmail.com </small>
+      </div>
+      <div class="form-group">
+        <label for="pw">Password </label>
+        <input type="password" class="form-control" id="pw" name="pw" ngModel required  #pw="ngModel" pattern="^[a-zA-Z0-9]{8,}?">
+        <small class="text text-danger" *ngIf="pw.errors?.['required'] ">password caractere  is required</small>
+        <small class="text text-danger" *ngIf="pw.errors?.['pattern'] ">Au moins 8 caractères   </small>
+      </div>
+      <div class="form-group">
+        <label for="pf">Profession </label>
+        <input type="text" class="form-control" id="pf" name="pf" ngModel required   #pf="ngModel" >
+        <small class="text text-danger" *ngIf="pf.errors?.['required'] ">Profession is required</small>
+        <!-- <small class="text text-danger" *ngIf="pf.errors?.['minlength'] ">Profession contiennent au minimum 3
+            caractères,   </small> -->
+         <!-- <small class="text text-danger" *ngIf="pf.errors?.['pattern'] ">doit contiennent que des lettres </small>  -->
+      </div>
+      <div class="form-group">
+        <label for="cc">Customer Category </label>
+        <input type="text" class="form-control" id="cc" name="cc" [(ngModel)]="customer" required readonly #cc="ngModel">
+        <small class="text text-danger" *ngIf="cc.errors?.['required'] ">Customer Category is required</small>
+        <!-- <small class="text text-danger" *ngIf="cc.errors?.['minlength'] ">Profession doit etre   </small>
+        <small class="text text-danger" *ngIf="cc.errors?.['pattern'] ">doit contiennent que des lettres.  </small> -->
+      </div>
+
+    <button type="submit"  [disabled]="addForm.invalid" class="btn btn-primary">Ajouter</button>
+</form>
